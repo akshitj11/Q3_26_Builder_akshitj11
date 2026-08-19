@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" font-family="ui-monospace, monospace" font-size="14">
+  <rect width="1200" height="780" fill="#0f172a"/>
+  <text x="40" y="40" fill="#e2e8f0" font-size="22" font-weight="700">Turbin3 Vault + Registration CPI</text>
+  <text x="40" y="64" fill="#94a3b8">Owner-only SOL vault. Registration fires inside withdraw via CPI.</text>
+
+  <!-- User -->
+  <rect x="40" y="110" width="160" height="56" rx="8" fill="#1e293b" stroke="#38bdf8"/>
+  <text x="70" y="143" fill="#e2e8f0">User Wallet</text>
+
+  <!-- Vault Program -->
+  <rect x="280" y="90" width="220" height="96" rx="8" fill="#14532d" stroke="#4ade80"/>
+  <text x="310" y="125" fill="#dcfce7" font-weight="700">Vault Program</text>
+  <text x="310" y="150" fill="#bbf7d0">initialize / deposit</text>
+  <text x="310" y="170" fill="#bbf7d0">withdraw / close</text>
+
+  <!-- Registration Program -->
+  <rect x="280" y="260" width="220" height="72" rx="8" fill="#581c87" stroke="#c084fc"/>
+  <text x="310" y="295" fill="#f3e8ff" font-weight="700">Registration Program</text>
+  <text x="310" y="318" fill="#e9d5ff">initialize(github)</text>
+
+  <!-- System Program -->
+  <rect x="280" y="390" width="220" height="56" rx="8" fill="#1e3a8a" stroke="#60a5fa"/>
+  <text x="310" y="423" fill="#dbeafe">System Program</text>
+
+  <!-- Accounts -->
+  <rect x="620" y="90" width="260" height="72" rx="8" fill="#1e293b" stroke="#fbbf24"/>
+  <text x="640" y="118" fill="#fde68a" font-weight="700">vault_state PDA</text>
+  <text x="640" y="142" fill="#fcd34d">seeds: ["state", user]</text>
+
+  <rect x="620" y="190" width="260" height="72" rx="8" fill="#1e293b" stroke="#fbbf24"/>
+  <text x="640" y="218" fill="#fde68a" font-weight="700">vault PDA</text>
+  <text x="640" y="242" fill="#fcd34d">seeds: ["vault", vault_state]</text>
+
+  <rect x="620" y="290" width="260" height="72" rx="8" fill="#1e293b" stroke="#fbbf24"/>
+  <text x="640" y="318" fill="#fde68a" font-weight="700">application_account PDA</text>
+  <text x="640" y="342" fill="#fcd34d">seeds: ["prereqs", user]</text>
+
+  <!-- Flow arrows -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <line x1="200" y1="138" x2="280" y2="138" stroke="#94a3b8" marker-end="url(#arrow)"/>
+  <text x="205" y="128" fill="#94a3b8">tx</text>
+
+  <line x1="500" y1="120" x2="620" y2="120" stroke="#94a3b8" marker-end="url(#arrow)"/>
+  <line x1="500" y1="150" x2="620" y2="220" stroke="#94a3b8" marker-end="url(#arrow)"/>
+
+  <line x1="400" y1="186" x2="400" y2="260" stroke="#c084fc" marker-end="url(#arrow)"/>
+  <text x="410" y="230" fill="#c084fc">CPI on withdraw</text>
+
+  <line x1="500" y1="296" x2="620" y2="326" stroke="#94a3b8" marker-end="url(#arrow)"/>
+
+  <line x1="400" y1="186" x2="400" y2="390" stroke="#60a5fa" marker-end="url(#arrow)"/>
+  <text x="410" y="300" fill="#60a5fa">SOL transfer CPI</text>
+
+  <!-- Flow legend -->
+  <rect x="40" y="500" width="1120" height="240" rx="10" fill="#111827" stroke="#334155"/>
+  <text x="60" y="535" fill="#e2e8f0" font-size="16" font-weight="700">Instruction flow</text>
+  <text x="60" y="565" fill="#cbd5e1">1. initialize: creates vault_state, stores bumps, derives vault PDA</text>
+  <text x="60" y="590" fill="#cbd5e1">2. deposit: user signs System transfer user to vault PDA</text>
+  <text x="60" y="615" fill="#cbd5e1">3. withdraw: vault PDA signs transfer to user, then CPI initialize to registration program</text>
+  <text x="60" y="640" fill="#cbd5e1">4. close: drain vault PDA, close vault_state, rent returns to user</text>
+  <text x="60" y="680" fill="#94a3b8">GitHub handle: compile-time constant GITHUB_USERNAME in vault program (akshitj11)</text>
+  <text x="60" y="710" fill="#94a3b8">Registration program ID: TRBZyQHB3m68FGeVsqTK39Wm4xejadjVhP5MAZaKWDM (devnet)</text>
+</svg>
