@@ -65,4 +65,5 @@
   <text x="60" y="640" fill="#cbd5e1">4. close: drain vault PDA, close vault_state, rent returns to user</text>
   <text x="60" y="680" fill="#94a3b8">GitHub handle: compile-time constant GITHUB_USERNAME in vault program (akshitj11)</text>
   <text x="60" y="710" fill="#94a3b8">Registration program ID: TRBZyQHB3m68FGeVsqTK39Wm4xejadjVhP5MAZaKWDM (devnet)</text>
+  <text x="60" y="740" fill="#94a3b8">Vault program ID: 6L2tmAf5H1NpVoEizg7iQLemGeWyf6KDRpoCxkt89d6u (devnet)</text>
 </svg>

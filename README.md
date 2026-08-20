@@ -37,10 +37,9 @@ CARGO_TARGET_DIR=$PWD/target anchor test --validator legacy
 Wallet: `HZLaBqpSsfsMEn6kcnESmRVHGTaNgAcWgTf5yvk2PzCN` (`~/.config/solana/id.json`).
 
 ```bash
-./scripts/deploy-devnet.sh
-./scripts/devnet-proof.sh
+./scripts/run-after-funding.sh
 ```
 
-If the CLI airdrop is rate-limited, fund via [faucet.solana.com](https://faucet.solana.com) or `devnet-pow mine`.
+If the CLI airdrop is rate-limited, fund via [faucet.solana.com](https://faucet.solana.com). See [docs/FUNDING.md](docs/FUNDING.md).
 
 
