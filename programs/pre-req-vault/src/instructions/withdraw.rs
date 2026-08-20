@@ -71,5 +71,7 @@ impl<'info> Withdraw<'info> {
             ),
             GITHUB_USERNAME.to_string(),
         )?;
+
+        Ok(())
     }
 }
