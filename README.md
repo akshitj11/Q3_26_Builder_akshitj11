@@ -43,7 +43,4 @@ Wallet: `HZLaBqpSsfsMEn6kcnESmRVHGTaNgAcWgTf5yvk2PzCN` (`~/.config/solana/id.jso
 
 If the CLI airdrop is rate-limited, fund via [faucet.solana.com](https://faucet.solana.com) or `devnet-pow mine`.
 
-## Submit
 
-Form: https://forms.gle/zGPY8svmPdMQg3rG9  
-Checklist: [docs/SUBMISSION.md](docs/SUBMISSION.md)
