@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Run after deploy-devnet.sh succeeds. Initializes vault, deposits 1 SOL, withdraws 0.5 SOL
-# to trigger registration CPI. Prints tx signatures and registration PDA for SUBMISSION.md.
+# to trigger registration CPI. Prints tx signatures for form submission.
 set -euo pipefail
 export PATH="$HOME/.avm/bin:$HOME/capstone_bootcamp_5/.tmp/solana-release/bin:$HOME/.local/share/mise/installs/node/20.20.2/bin:${PATH:-}"
 
