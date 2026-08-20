@@ -1,41 +1,45 @@
-# Form submission checklist
+# Submission
 
 Form: https://forms.gle/zGPY8svmPdMQg3rG9
 
-## Agent completed
+## Done
 
-- [x] Modified vault with registration CPI in `withdraw`
-- [x] `anchor test --validator legacy` passes (4/4)
-- [x] Architecture diagram: `docs/architecture.png`
-- [x] README with build/test/deploy steps
-- [x] Video script: `docs/VIDEO_SCRIPT.md`
-- [x] Security pre-scan: no high/critical findings in `programs/pre-req-vault/src`
+- [x] Registration CPI in `withdraw` (`programs/pre-req-vault/src/instructions/withdraw.rs`)
+- [x] `anchor test --validator legacy` — 4/4 passing
+- [x] Architecture diagram — `docs/architecture.png`
+- [x] Repo — https://github.com/akshitj11/Q3_26_Builder_akshitj11
+- [x] Video script — `docs/VIDEO_SCRIPT.md`
 
-## User completes
+## Pending devnet (fund wallet first)
 
-- [ ] Record video from `docs/VIDEO_SCRIPT.md` (max 3 min, YouTube, captions on)
+Devnet faucet rate-limited at last attempt. After funding `HZLaBqpSsfsMEn6kcnESmRVHGTaNgAcWgTf5yvk2PzCN`:
+
+```bash
+cd ~/Projects/turbin3-vault-prereq
+./scripts/deploy-devnet.sh
+./scripts/devnet-proof.sh
+```
+
+Paste deploy and withdraw tx signatures below after running.
+
+- [ ] Program deployed on devnet
+- [ ] Withdraw tx creates registration PDA with `akshitj11`
+
+## You
+
+- [ ] Record video from `docs/VIDEO_SCRIPT.md` (≤3 min, YouTube, captions)
 - [ ] Discord progress post
-- [ ] Submit form with repo URL, diagram link, video URL
+- [ ] Submit form
 
-## Copy-paste fields
+## Form fields
 
 | Field | Value |
 |---|---|
-| GitHub repo | `https://github.com/akshitj11/Q3_26_Builder_akshitj11` (after push) |
+| GitHub repo | https://github.com/akshitj11/Q3_26_Builder_akshitj11 |
 | GitHub username | `akshitj11` |
-| Vault program ID | `B14XYWMkDrVeQTgEM93sLLxkzfffK6dppETCEKfnM2H2` |
+| Vault program ID | `6L2tmAf5H1NpVoEizg7iQLemGeWyf6KDRpoCxkt89d6u` |
 | Registration program | `TRBZyQHB3m68FGeVsqTK39Wm4xejadjVhP5MAZaKWDM` |
 | Diagram | `docs/architecture.png` in repo |
-
-## Devnet deploy (if not done yet)
-
-Devnet faucet was rate-limited during automated setup. After funding wallet:
-
-```bash
-solana config set --url devnet
-solana airdrop 2
-cd ~/Projects/turbin3-vault-prereq
-CARGO_TARGET_DIR=$PWD/target anchor deploy --provider.cluster devnet
-```
-
-Wallet: `HZLaBqpSsfsMEn6kcnESmRVHGTaNgAcWgTf5yvk2PzCN`
+| Deploy tx | _(run deploy script)_ |
+| Withdraw tx | _(run devnet-proof script)_ |
+| Registration PDA | _(printed by devnet-proof script)_ |
