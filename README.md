@@ -1,6 +1,6 @@
 # pre-req-vault
 
-Withdraw moves SOL out of the vault PDA, then CPIs the Turbin3 registration program's `initialize` in the same instruction. Evaluators verify enrollment runs through your deployed vault program, not a separate client call.
+`withdraw` sends lamports from the vault PDA to the user, then CPIs registration `initialize` with `GITHUB_USERNAME` in the same instruction. Turbin3 checks that registration runs through your deployed vault program, not a separate client call.
 
 | | |
 |---|---|
@@ -9,11 +9,7 @@ Withdraw moves SOL out of the vault PDA, then CPIs the Turbin3 registration prog
 | GitHub on-chain | `akshitj11` |
 | Architecture | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) |
 
-Each wallet gets two PDAs: `vault_state` holds bump seeds, `vault` is a System-owned lamport account with no custom data. Withdrawals use `CpiContext::new_with_signer` because the vault PDA has no private key. After the System transfer, `withdraw` CPIs registration `initialize` with `GITHUB_USERNAME`. One registration per wallet.
-
-## Build
-
-Rust stable, Solana CLI, Anchor 1.1.2, Node 20.
+Two PDAs per wallet. `vault_state` stores bump seeds. `vault` is System-owned, lamports only, no custom data. The vault has no private key, so outbound transfers pass PDA signer seeds to the System Program. Registration fires once per wallet on the first `withdraw`.
 
 ```bash
 avm install 1.1.2 && avm use 1.1.2
@@ -21,25 +17,19 @@ npm install
 CARGO_TARGET_DIR=$PWD/target anchor build
 ```
 
-## Test
-
-Local validator clones the devnet registration program.
+Tests run on a local validator with the devnet registration program cloned in. Node 20 required.
 
 ```bash
 export PATH="$HOME/.local/share/mise/installs/node/20.20.2/bin:$PATH"
 CARGO_TARGET_DIR=$PWD/target anchor test --validator legacy
 ```
 
-4/4: initialize, deposit, withdraw with registration PDA, close.
+Four tests: initialize, deposit, withdraw with registration PDA, close.
 
-## Deploy
-
-Wallet: `HZLaBqpSsfsMEn6kcnESmRVHGTaNgAcWgTf5yvk2PzCN` (`~/.config/solana/id.json`).
-
-Fund at [faucet.solana.com](https://faucet.solana.com) if CLI airdrop is rate-limited, then:
+Deploy wallet: `HZLaBqpSsfsMEn6kcnESmRVHGTaNgAcWgTf5yvk2PzCN` (`~/.config/solana/id.json`). Fund at [faucet.solana.com](https://faucet.solana.com) if CLI airdrop is rate-limited.
 
 ```bash
 ./scripts/run-after-funding.sh
 ```
 
-Submission form: https://forms.gle/zGPY8svmPdMQg3rG9
+Form: https://forms.gle/zGPY8svmPdMQg3rG9

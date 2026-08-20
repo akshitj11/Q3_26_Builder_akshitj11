@@ -1,8 +1,8 @@
 # Architecture
 
-Withdraw moves SOL out of the vault PDA, then CPIs registration `initialize` in the same instruction. Evaluators check that enrollment runs through your deployed vault program, not a direct client call.
+Programs on Solana are stateless. This vault splits state across two PDAs: `vault_state` holds bump seeds, `vault` holds lamports under the System Program with no data field. That split is why `withdraw` needs `CpiContext::new_with_signer`. The vault PDA signs the outbound transfer, then CPIs registration `initialize` before the instruction returns.
 
-Each wallet owns two PDAs. `vault_state` stores bump seeds. `vault` is System-owned and holds lamports only, no custom data. Outbound transfers need PDA signer seeds because the vault has no private key. After the System transfer in `withdraw`, the vault program CPIs `TRBZyQHB3m68FGeVsqTK39Wm4xejadjVhP5MAZaKWDM` and writes `akshitj11` into the `prereqs` PDA. One registration per wallet.
+Registration lives at `TRBZyQHB3m68FGeVsqTK39Wm4xejadjVhP5MAZaKWDM`. The CPI writes `akshitj11` into a `prereqs` PDA seeded on the user wallet. A second `withdraw` on the same wallet would fail once that PDA exists.
 
 ```mermaid
 flowchart TB
@@ -34,7 +34,7 @@ flowchart TB
     regProg --> regPDA
 
     user -->|"close"| vaultProg
-    vaultProg -->|"drain + close"| vaultPDA
+    vaultProg -->|"drain and close"| vaultPDA
     vaultProg --> vaultState
 ```
 
